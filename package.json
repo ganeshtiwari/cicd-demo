@@ -1,0 +1,22 @@
+{
+  "name": "simple-cicd-demo",
+  "version": "1.0.0",
+  "description": "A simple demonstration of CI/CD with GitHub Actions",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "cicd",
+    "github-actions",
+    "github-pages"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+}

@@ -9,6 +9,7 @@ A minimal project demonstrating CI/CD with GitHub Actions and GitHub Pages.
 3. **CI/CD Pipeline**: GitHub Actions workflow that:
    - Runs tests on every push
    - Deploys to GitHub Pages when tests pass on the main branch
+   - Your page will be available at https://<your-username>.github.io/repo-name/
 
 ## How to Use
 
@@ -46,3 +47,6 @@ A minimal project demonstrating CI/CD with GitHub Actions and GitHub Pages.
    ```
 
 3. **Open `index.html` in your browser** to see the application
+   ```
+   python3 -m http.server
+   ```

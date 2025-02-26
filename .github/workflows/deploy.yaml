@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
     
     steps:
@@ -29,20 +29,29 @@ jobs:
       
     - name: Run tests
       run: npm test
-      
-    - name: Setup Pages
-      uses: actions/configure-pages@v3
 
-    - name: List directory contents (for debugging)
-      run: ls -R
-
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: . 
-        name: github-pages
+  deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
-    - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v3
-      with:
-          artifact_name: github-pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
